@@ -1,0 +1,16 @@
+# Text Editor
+.vscode/
+.cache/
+*~
+*.swp
+*.swo
+*#
+
+# SQL
+*.sqlite
+
+# Python
+*.egg-info
+*.pyc
+dist/
+build/

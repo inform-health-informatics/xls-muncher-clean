@@ -1,0 +1,14 @@
+
+# Database connection
+sqlalchemy
+psycopg2
+
+# Excel handling
+openpyxl
+xlrd
+
+# Configuration
+pyyaml
+
+# Utilities
+python-dateutil

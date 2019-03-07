@@ -1,0 +1,7 @@
+-r base.in
+
+# For managing pinned package versions
+pip-tools
+
+# Testing
+pytest

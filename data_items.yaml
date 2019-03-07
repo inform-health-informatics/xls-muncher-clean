@@ -1,0 +1,112 @@
+# Data specification for xls-mucnher
+# Created at 2017-10-17
+# Notes are recorded as block using '|' so line breaks are preserved when printing
+# Textblocks should be markdown formatted
+# Rough alphabetical order but this can be fixed with a bit of python code later
+-
+  item: first name
+  shortname:
+  sqltype: char
+  sqllen: 255
+  notes: |
+    patient's first name
+-
+  item: last name
+  shortname:
+  sqltype: char
+  sqllen: 255
+  notes: |
+    patient's last name
+-
+  item: title
+  sqltype: char
+  label: Salutation
+  notes: |
+    Mr, Mrs, Dr, Ms, etc.
+-
+  item: date of birth
+  sqltype: date
+  sheetalias: {x: dateofbirth}
+  notes: |
+    - date of birth of patient
+-
+  item: Hospital patient ID
+  shortname: idmrn
+  sqltype: char
+  sqllen: 32
+  notes: |
+    - number assigned by your hospital to patient
+    - otherwise known as the Medical Record Number
+-
+  item: NHS number
+  sqltype: char
+  sqllen: 10
+  varlab: NHS number
+  checks:
+  -
+    type: regex
+    value: '\b\d{10}\b'
+    msg: Invalid format for NHS number
+  notes: |
+    - Unique number assigned by the NHS as a numeric ten digit code to each NHS patient
+-
+  item: sex
+  shortname:
+  sqltype: tinyint
+  label: Sex
+  sheetalias: {x: gender}
+  vallab:
+    1: Male
+    0: Female
+  notes: |
+    - follows the same pattern as male i.e. male 1 female 0
+    - genotypical (as they were born ...) sex of patient
+-
+  item: surgical procedure
+  shortname:
+  sqltype: char
+  sqllen: 255
+  notes: |
+    free text description of procedure
+    need to check that 255 chars is enough
+-
+  item: surgical date
+  shortname:
+  sqltype: date
+  notes: |
+    TCI (To Come In): planned date of procedure
+-
+  item: surgical priority
+  shortname:
+  sqltype: char
+  notes: |
+    should be some error checking against a list of acceptable values
+-
+  item: surgical consultant
+  shortname:
+  sqltype: char
+  notes: |
+    named consultant
+-
+  item: surgical pathway
+  shortname:
+  sqltype: char
+  notes: |
+    which pathway, related to the sheet from which the data has been extracted
+-
+  item: surgical notes
+  shortname:
+  sqltype: char
+  notes: |
+    free text items
+-
+  item: pacu request
+  shortname:
+  sqltype: tinyint
+  sqllen: 3
+  # convert to common value regardless of entry
+  valias: &value_yesno {'n': 0, 'y': 1, 'yes': 1, 'no': 0, '1': 1, '0': 0}
+  # appropriately label that common value
+  vallab: &label_truefalse {0: 'False', 1: 'True'}
+  notes: |
+    Requested an ICU bed
